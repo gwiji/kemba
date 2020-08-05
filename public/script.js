@@ -47,6 +47,11 @@ function connectToNewUser(userId, stream) {
   //video.muted = false;
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
+    $('#disconnect').click(function(){
+        call.close();
+        video.remove()
+        console.log('disconnect');
+    });
   })
 
   call.on('close', () => {
@@ -64,7 +69,3 @@ function addVideoStream(video, stream) {
   videoGrid.append(video)
 }
 
-$('#disconnect').click(function(){
-    myPeer.disconnected = true;
-    console.log('disconnect');
-});
