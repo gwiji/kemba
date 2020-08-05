@@ -48,13 +48,12 @@ myPeer.on('open', id => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
-  //video.muted = false;
+  
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
     $('#disconnect').click(function(){
         call.close();
-        video.remove()
-        videoGrid.remove(video)
+        //video.remove();
         console.log('disconnect');
     });
   })
