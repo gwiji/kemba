@@ -6,9 +6,8 @@ const myPeer = new Peer(undefined, {
   port: '3001'
 })
 
-myPeer.on('open', function(id) {
-    console.log('My peer ID is: ' + id);
-});
+var conn = myPeer.connect();
+console.log(conn)
 
 /*
 
