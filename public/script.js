@@ -65,6 +65,6 @@ function addVideoStream(video, stream) {
 }
 
 $('#disconnect').click(function(){
-    window.existingCall.close();
+    video.close();
     console.log('disconnect');
 })
