@@ -3,16 +3,14 @@ const videoGrid = document.getElementById('video-grid')
 
 const myPeer = new Peer(undefined, {
   host: 'kemba.herokuapp.com',
-  secure:true, 
-  port:443
+  secure: true, 
+  port: 443
 })
 
 
 const myVideo = document.createElement('video');
 myVideo.muted = true;
 const peers = {}
-
-myPeer.connect()
 
 navigator.mediaDevices.getUserMedia({
   video: true,
@@ -30,6 +28,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
+    console.log('Connected');
     connectToNewUser(userId, stream)
   })
 })
