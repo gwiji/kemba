@@ -64,9 +64,6 @@ function addVideoStream(video, stream) {
 }
 
 $('#disconnect').click(function(){
-    navigator.mediaDevices.video = false;
-    navigator.mediaDevices.audio = false;
+    myPeer.destroy()
     console.log('disconnect');
 });
-
-
