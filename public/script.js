@@ -23,6 +23,7 @@ navigator.mediaDevices.getUserMedia({
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
+      
     })
   })
 
@@ -64,6 +65,6 @@ function addVideoStream(video, stream) {
 }
 
 $('#disconnect').click(function(){
-    myPeer.destroy()
+    myPeer.disconnected = true;
     console.log('disconnect');
 });
