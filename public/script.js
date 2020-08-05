@@ -11,14 +11,6 @@ myVideo.muted = true;
 
 const peers = {}
 
-socket.emit('join-room', ROOM_ID, 10);
-
-socket.on('user-connected', userId => {
-    console.log("user:",userId);
-    //connectToNewUser(userId, stream)
-})
-
-
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
@@ -35,7 +27,6 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    console.log(userId);
     connectToNewUser(userId, stream)
   })
 })
@@ -46,7 +37,7 @@ socket.on('user-disconnected', userId => {
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
-  console.log(id);
+  console.log("User ID:",id);
 })
 
 function connectToNewUser(userId, stream) {
