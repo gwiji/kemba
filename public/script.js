@@ -6,12 +6,12 @@ const myPeer = new Peer(undefined, {
   port: '3001'
 })
 
-console.log(myPeer);
 
 const myVideo = document.createElement('video')
 myVideo.muted = true;
 const peers = {}
 
+/*
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
@@ -32,9 +32,12 @@ navigator.mediaDevices.getUserMedia({
   })
 })
 
+
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
 })
+
+*/
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
