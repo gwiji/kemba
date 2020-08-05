@@ -7,7 +7,7 @@ const myPeer = new Peer(undefined, {
 })
 
 
-const myVideo = document.createElement('video')
+const myVideo = document.createElement('video');
 myVideo.muted = true;
 const peers = {}
 
