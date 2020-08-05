@@ -53,13 +53,13 @@ function connectToNewUser(userId, stream) {
     addVideoStream(video, userVideoStream)
     $('#disconnect').click(function(){
         call.close();
-        //video.remove();
         console.log('disconnect');
     });
   })
 
   call.on('close', () => {
     video.remove()
+    peers[userId].close()
   })
 
   peers[userId] = call
