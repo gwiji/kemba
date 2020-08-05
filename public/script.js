@@ -5,6 +5,7 @@ const myPeer = new Peer(undefined, {
   host: '/',
   port: '3001'
 })
+
 const myVideo = document.createElement('video')
 myVideo.muted = true;
 
@@ -25,6 +26,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
+    console.log(userId);
     connectToNewUser(userId, stream)
   })
 })
