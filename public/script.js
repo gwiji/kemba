@@ -6,17 +6,16 @@ const myPeer = new Peer(undefined, {
   port: '3001'
 })
 
-var conn = myPeer.connect();
-conn.on('open', function(){
-  console.log(conn.id);
+myPeer.on('open', function(id) {
+    console.log('My peer ID is: ' + id);
 });
 
+/*
 
 const myVideo = document.createElement('video')
 myVideo.muted = true;
 const peers = {}
 
-/*
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
@@ -37,15 +36,13 @@ navigator.mediaDevices.getUserMedia({
   })
 })
 
-
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
 })
 
-*/
-
-socket.on('user-connected', userId => {
-    console.log(userId)
+myPeer.on('open', id => {
+  socket.emit('join-room', ROOM_ID, id)
+  console.log("User ID:",id);
 })
 
 function connectToNewUser(userId, stream) {
@@ -70,3 +67,4 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
+*/
