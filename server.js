@@ -4,8 +4,8 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 
-const { PeerServer } = require('peer');
-const peerServer = PeerServer({ port: 3001, path: '/' });
+const { ExpressPeerServer } = require('peer');
+
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -33,3 +33,10 @@ io.on('connection', socket => {
 })
 
 server.listen(process.env.PORT || 3000)
+
+const peerServer = ExpressPeerServer(server, {
+    debug: true,
+    path: '/'
+  });
+   
+app.use('/peerjs', peerServer);
