@@ -27,7 +27,6 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    //console.log('Connected');
     connectToNewUser(userId, stream)
   })
 })
@@ -39,11 +38,6 @@ socket.on('user-disconnected', userId => {
 myPeer.on('open', id => {
   console.log("User ID:",id);
   socket.emit('join-room', ROOM_ID, id)
-
-  $('#disconnect').click(function(){
-    if (peers[id]) peers[id].close()
-    console.log('disconnect');
-})
 })
 
 function connectToNewUser(userId, stream) {
@@ -68,5 +62,10 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
+
+$('#disconnect').click(function(){
+    navigator.mediaDevices.close();
+    console.log('disconnect');
+});
 
 
