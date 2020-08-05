@@ -33,6 +33,7 @@ navigator.mediaDevices.getUserMedia({
 
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
+    video.remove();
   })
 })
 
