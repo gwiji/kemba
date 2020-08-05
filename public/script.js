@@ -6,10 +6,6 @@ const myPeer = new Peer(undefined, {
   port: '3001'
 })
 
-var conn = myPeer.connect();
-console.log(conn)
-
-/*
 
 const myVideo = document.createElement('video')
 myVideo.muted = true;
@@ -66,4 +62,3 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
-*/
