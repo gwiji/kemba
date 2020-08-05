@@ -39,6 +39,11 @@ socket.on('user-disconnected', userId => {
 myPeer.on('open', id => {
   console.log("User ID:",id);
   socket.emit('join-room', ROOM_ID, id)
+
+  $('#disconnect').click(function(){
+    if (peers[id]) peers[id].close()
+    console.log('disconnect');
+})
 })
 
 function connectToNewUser(userId, stream) {
@@ -64,7 +69,4 @@ function addVideoStream(video, stream) {
   videoGrid.append(video)
 }
 
-$('#disconnect').click(function(){
-    if (peers[userId]) peers[userId].close()
-    console.log('disconnect');
-})
+
