@@ -65,6 +65,6 @@ function addVideoStream(video, stream) {
 }
 
 $('#disconnect').click(function(){
-    video.close();
+    myPeer.close();
     console.log('disconnect');
 })
