@@ -63,3 +63,7 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
+
+$('#disconnect').click(function(){
+    console.log('disconnect');
+})
