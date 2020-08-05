@@ -45,7 +45,11 @@ myPeer.on('open', id => {
 })
 
 myPeer.on('close', id => {
-    socket.disconnect()
+    socket.disconnect();
+    navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: false
+      })
   })
 
 function connectToNewUser(userId, stream) {
@@ -56,6 +60,7 @@ function connectToNewUser(userId, stream) {
     addVideoStream(video, userVideoStream)
     $('#disconnect').click(function(){
         call.close();
+        myPeer.close();
         console.log('disconnect');
     });
   })
