@@ -33,7 +33,6 @@ navigator.mediaDevices.getUserMedia({
 
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
-    video.remove();
   })
 })
 
@@ -55,6 +54,7 @@ function connectToNewUser(userId, stream) {
     $('#disconnect').click(function(){
         call.close();
         video.remove()
+        videoGrid.remove(video)
         console.log('disconnect');
     });
   })
