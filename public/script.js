@@ -41,9 +41,12 @@ socket.on('user-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-  console.log("User ID:",id);
   socket.emit('join-room', ROOM_ID, id)
 })
+
+myPeer.on('close', id => {
+    socket.disconnect()
+  })
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
