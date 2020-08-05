@@ -1,7 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
-const myPeer = new Peer(undefined, {
+const myPeer = new Peer({
   host: 'kemba.herokuapp.com',
   secure: true, 
   port: 443
