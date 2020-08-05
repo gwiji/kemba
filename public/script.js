@@ -6,12 +6,9 @@ const myPeer = new Peer(undefined, {
   port: '3001'
 })
 
-var conn = myPeer.connect('another-peers-id');
-// on open will be launch when you successfully connect to PeerServer
+var conn = myPeer.connect();
 conn.on('open', function(){
-  // here you have conn.id
   console.log(conn.id);
-  conn.send('hi!');
 });
 
 
@@ -46,11 +43,6 @@ socket.on('user-disconnected', userId => {
 })
 
 */
-
-myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id)
-  //console.log("User ID:",id);
-})
 
 socket.on('user-connected', userId => {
     console.log(userId)
