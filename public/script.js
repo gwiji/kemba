@@ -11,6 +11,8 @@ myVideo.muted = true;
 
 const peers = {}
 
+socket.emit('join-room', ROOM_ID, 10);
+
 socket.on('user-connected', userId => {
     console.log("user:",userId);
     connectToNewUser(userId, stream)
@@ -53,7 +55,7 @@ function connectToNewUser(userId, stream) {
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
   })
-  
+
   call.on('close', () => {
     video.remove()
   })
