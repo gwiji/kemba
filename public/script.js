@@ -31,7 +31,7 @@ $('#strim').click(
           console.log('peers connected',peers)
           $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
           $('.call').click(function(){
-              socket.emit('disconnect')
+              //socket.emit('disconnect',roomId, userId)
               $(this).css({display: 'none'});
               connectToNewUser(userId, stream)
               $('#contacts').html('<br><button class="btn btn-danger" id="disconnect">End Call</button>');
@@ -85,12 +85,13 @@ function connectToNewUser(userId, stream) {
         call.close();
         socket.disconnect();
         $(this).css({display: "none"});
-
+        socket.emit('disconnect',roomId, userId);
         userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
             }
         });
+        location.reload();
 
     });
 
