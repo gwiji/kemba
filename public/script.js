@@ -64,11 +64,11 @@ myPeer.on('open', id => {
 
 myPeer.on('close', id => {
     socket.disconnect();
-    console.log('Peer disconnected'+id);
   })
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
+  peers[userId] = call
   const video = document.createElement('video')
   
   call.on('stream', userVideoStream => {
@@ -79,17 +79,18 @@ function connectToNewUser(userId, stream) {
         call.close();
         socket.disconnect();
         $(this).css({display: "none"});
-        userVideoStream.getTracks().forEach(function(track) {
+
+        stream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
                 console.log('Rec stopped')
             }
         });
+
     });
 
   })
 
-  peers[userId] = call
 
   call.on('close', () => {
     video.remove()
