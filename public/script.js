@@ -56,7 +56,7 @@ socket.on('user-disconnected', userId => {
         console.log('disconnected',userId);
     }
 
-}) 8/
+}) */
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
