@@ -34,7 +34,7 @@ navigator.mediaDevices.getUserMedia({
 
     $('.call').click(function(){
         $(this).css({display: 'none'});
-        connectToNewUser(userId, stream)//addVideoStream(video, userVideoStream)
+        connectToNewUser(userId, stream)
         $('#contacts').html('<br><button class="btn btn-danger" id="disconnect">End Call</button>');
     })
     
@@ -59,6 +59,7 @@ function connectToNewUser(userId, stream) {
   const video = document.createElement('video')
   
   call.on('stream', userVideoStream => {
+    addVideoStream(video, userVideoStream)
     $('#disconnect').click(function(){
         video.remove()
         call.close();
