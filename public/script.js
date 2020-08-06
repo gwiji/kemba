@@ -89,9 +89,10 @@ function connectToNewUser(userId, stream) {
         userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
+                location.reload();
             }
         });
-        location.reload();
+
 
     });
 
