@@ -68,13 +68,15 @@ function connectToNewUser(userId, stream) {
     });
   })
 
+  peers[userId] = call
+
   call.on('close', () => {
     video.remove()
     socket.disconnect();
     peers[userId].close()
+    console.log('Call close');
   })
 
-  peers[userId] = call
 }
 
 function addVideoStream(video, stream) {
