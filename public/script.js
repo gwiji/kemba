@@ -41,9 +41,8 @@ navigator.mediaDevices.getUserMedia({
 
   socket.on('user-disconnected', userId => {
     console.log('peers disconnected',userId);
-    if (peers[userId]){ peers[userId].close() 
-        console.log('disconnected',userId);
-    }
+    peers[userId].close() 
+    console.log('disconnected',userId);
     
   })
 
@@ -64,7 +63,7 @@ myPeer.on('open', id => {
 
 myPeer.on('close', id => {
     socket.disconnect();
-    console.log('Peer disconnected');
+    console.log('Peer disconnected'+id);
   })
 
 function connectToNewUser(userId, stream) {
@@ -78,7 +77,13 @@ function connectToNewUser(userId, stream) {
         video.remove()
         call.close();
         socket.disconnect();
-        $(this).css({display: "none"})
+        $(this).css({display: "none"});
+        userVideoStream.getTracks().forEach(function(track) {
+            if (track.readyState == 'live') {
+                track.stop();
+                console.log('Rec stopped')
+            }
+        });
     });
 
   })
