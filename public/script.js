@@ -13,16 +13,7 @@ const peers = {}
 
 $('#strim').click(
     function(){
-    strim()
-    $(this).css({display: "none"})
-    }
-);
-
-function strim(){
-    navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
-      }).then(stream => {
+    strim().then(stream => {
       
         addVideoStream(myVideo, stream)
       
@@ -56,6 +47,15 @@ function strim(){
           
         })
       
+      })
+    $(this).css({display: "none"})
+    }
+);
+
+function strim(){
+    return navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
       })
 }
 /*
