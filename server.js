@@ -17,9 +17,11 @@ app.get('/:room', (req, res) => {
   }
 
   if(req.params.room == 'close'){
-    res.send('room-closed')
+    res.render('room-closed')
     console.log(req.params.room)
   }
+
+  console.log(req.params.room)
 })
 
 io.on('connection', socket => {
