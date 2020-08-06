@@ -16,7 +16,7 @@ navigator.mediaDevices.getUserMedia({
   audio: true
 }).then(stream => {
 
-  //addVideoStream(myVideo, stream)
+  addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
     call.answer(stream)
@@ -24,7 +24,9 @@ navigator.mediaDevices.getUserMedia({
 
     call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
+        console.log('Peer on stream');
     })
+    console.log('Peer on call');
   })
 
   socket.on('user-connected', userId => {
