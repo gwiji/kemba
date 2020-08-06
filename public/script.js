@@ -39,8 +39,8 @@ navigator.mediaDevices.getUserMedia({
 })
 
 socket.on('user-disconnected', userId => {
-   socket.disconnect();
   if (peers[userId]) peers[userId].close()
+  socket.disconnect();
 })
 
 myPeer.on('open', id => {
@@ -73,6 +73,7 @@ function connectToNewUser(userId, stream) {
 
   call.on('close', () => {
     video.remove()
+    socket.disconnect()
     peers[userId].close()
   })
 
