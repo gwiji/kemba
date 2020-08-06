@@ -60,6 +60,7 @@ function connectToNewUser(userId, stream) {
   
   call.on('stream', userVideoStream => {
     $('#disconnect').click(function(){
+        video.remove()
         call.close();
         socket.disconnect();
         console.log('Call disconnected');
