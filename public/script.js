@@ -67,7 +67,6 @@ function connectToNewUser(userId, stream) {
         myPeer.close();
         videoGrid.remove();
         userVideoStream.close();
-        socket.disconnect();
         console.log('disconnect');
     });
   })
