@@ -64,8 +64,6 @@ function connectToNewUser(userId, stream) {
         video.remove()
         call.close();
         socket.disconnect();
-        //console.log('Call disconnected');
-        videoGrid.remove(video);
         $(this).css({display: "none"})
     });
   })
@@ -75,6 +73,7 @@ function connectToNewUser(userId, stream) {
   call.on('close', () => {
     video.remove()
     socket.disconnect();
+    //videoGrid.re(video);
     peers[userId].close()
   })
 
