@@ -34,7 +34,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    console.log('user connected',userId)
+    $('#contacts').html('<button class="call btn btn-primary">Call</button>')
     connectToNewUser(userId, stream)
   })
 })
