@@ -32,7 +32,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    $('#contacts').html('<button class="call btn btn-primary">Call on</button>');
+    $('#contacts').html('<button class="call btn btn-primary text-center">Call Participants</button>');
     $('.call').click(function(){
         connectToNewUser(userId, stream)//addVideoStream(video, userVideoStream)
     })
