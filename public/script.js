@@ -60,6 +60,12 @@ function connectToNewUser(userId, stream) {
   
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
+    $('#disconnect').click(function(){
+        video.remove()
+        call.close();
+        socket.disconnect();
+        //console.log('Call disconnected');
+    });
   })
 
   peers[userId] = call
@@ -68,7 +74,6 @@ function connectToNewUser(userId, stream) {
     video.remove()
     socket.disconnect();
     peers[userId].close()
-    console.log('Call close');
   })
 
 }
