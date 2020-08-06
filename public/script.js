@@ -83,7 +83,7 @@ function connectToNewUser(userId, stream) {
         stream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
-                console.log('Rec stopped')
+                console.log(track.readyState)
             }
         });
 
@@ -96,7 +96,6 @@ function connectToNewUser(userId, stream) {
     socket.disconnect();
     peers[userId].close()
     removeVideoStream(video);
-    console.log('call closed');
   })
 
 }
