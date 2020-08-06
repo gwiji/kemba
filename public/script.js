@@ -29,6 +29,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
+    peers.push(userId);
     console.log('peers connected',peers)
     $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
     $('.call').click(function(){
