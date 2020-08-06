@@ -65,6 +65,7 @@ function connectToNewUser(userId, stream) {
         call.close();
         socket.disconnect();
         //console.log('Call disconnected');
+        videoGrid.remove()
     });
   })
 
