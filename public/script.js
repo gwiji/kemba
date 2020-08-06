@@ -96,6 +96,6 @@ function removeVideoStream(video, stream) {
       video.pause()
     });
   
-    videoGrid.removeChild(videoGrid.childNodes[0])
+    video.remove()
   }
 
