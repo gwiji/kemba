@@ -28,7 +28,6 @@ $('#strim').click(
         })
       
         socket.on('user-connected', userId => {
-          
           console.log('peers connected',peers)
           $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
           $('.call').click(function(){
@@ -73,6 +72,7 @@ myPeer.on('open', id => {
 })
 
 function connectToNewUser(userId, stream) {
+
   const call = myPeer.call(userId, stream)
   peers[userId] = call
   const video = document.createElement('video')
@@ -86,7 +86,7 @@ function connectToNewUser(userId, stream) {
         socket.disconnect();
         $(this).css({display: "none"});
 
-        stream.getTracks().forEach(function(track) {
+        userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
             }
