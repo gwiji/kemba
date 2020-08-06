@@ -64,7 +64,7 @@ function connectToNewUser(userId, stream) {
         video.remove()
         call.close();
         socket.disconnect();
-        removeVideoStream(video,userVideoStream)
+        myPeer.close()
         $(this).css({display: "none"})
     });
   })
@@ -74,8 +74,8 @@ function connectToNewUser(userId, stream) {
   call.on('close', () => {
     video.remove()
     socket.disconnect();
-    //videoGrid.removeChild(videoGrid.childNodes[0])
     peers[userId].close()
+    removeVideoStream(video);
     console.log('call closed');
   })
 
@@ -90,12 +90,7 @@ function addVideoStream(video, stream) {
   videoGrid.appendChild(video)
 }
 
-function removeVideoStream(video, stream) {
-    video.srcObject = stream
-    video.addEventListener('loadedmetadata', () => {
-      video.pause()
-    });
-  
-    video.remove()
-  }
+function removeVideoStream(video) {
+    $(video).css({display: 'none'})
+}
 
