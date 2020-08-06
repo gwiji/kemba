@@ -73,7 +73,7 @@ function connectToNewUser(userId, stream) {
   call.on('close', () => {
     video.remove()
     socket.disconnect();
-    videoGrid.removeChild(videoGrid.childNodes[0])
+    //videoGrid.removeChild(videoGrid.childNodes[0])
     peers[userId].close()
   })
 
