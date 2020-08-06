@@ -38,18 +38,19 @@ navigator.mediaDevices.getUserMedia({
     })
     
   })
-
+/*
   socket.on('user-disconnected', userId => {
     console.log('peers',peers)
     if (peers[userId]){ peers[userId].close() 
         console.log('disconnected',userId);
     }
     
-  })
+  })*/
 
 })
 
 socket.on('user-disconnected', userId => {
+    console.log('peers',peers)
     if (peers[userId]){ peers[userId].close() 
         console.log('disconnected',userId);
     }
