@@ -30,7 +30,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    
+    $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
     $('.call').click(function(){
         $(this).css({display: 'none'});
         connectToNewUser(userId, stream)
@@ -50,15 +50,15 @@ navigator.mediaDevices.getUserMedia({
 })
 
 socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close()
-  console.log('disconnected');
+    if (peers[userId]){ peers[userId].close() 
+        console.log('disconnected',userId);
+    }
 
 })
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
   console.log(id,ROOM_ID)
-  $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
 })
 
 myPeer.on('close', id => {
