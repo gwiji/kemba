@@ -92,7 +92,7 @@ function connectToNewUser(userId, stream) {
             }
         });
 
-        location.reload();
+        location.replace('/close')
 
 
     });
