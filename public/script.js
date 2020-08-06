@@ -76,7 +76,7 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   peers[userId] = call
   const video = document.createElement('video')
-  video.setAttribute("name",userId)
+  video.setAttribute("class",userId)
   
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
@@ -92,7 +92,8 @@ function connectToNewUser(userId, stream) {
                 track.stop();
             }
         });
-        $('video[value='+ userId +']' ).css({display: "none"})
+
+        $('video[='+ userId +']' ).css({display: "none"})
         location.replace('https://kemba.herokuapp.com/close')
 
 
