@@ -16,9 +16,9 @@ app.get('/:room', (req, res) => {
     res.render('room', { roomId: req.params.room })
   }
 
-  if(req.params.room == 'close' && req.params.room != 'favicon.ico'){
+  if(req.params.room == 'close'){
     res.send('room-closed')
-    console.log('closed!')
+    console.log(req.params.room)
   }
 })
 
