@@ -63,11 +63,6 @@ myPeer.on('open', id => {
   console.log("id as "+id,"room as "+ROOM_ID)
 })
 
-myPeer.on('close', id => {
-    socket.disconnect();
-    console.log('peer closed')
-  })
-
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   peers[userId] = call
@@ -82,7 +77,7 @@ function connectToNewUser(userId, stream) {
         socket.disconnect();
         $(this).css({display: "none"});
 
-        stream.getTracks().forEach(function(track) {
+        userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
                 console.log(track.readyState)
