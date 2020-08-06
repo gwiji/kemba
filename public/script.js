@@ -30,6 +30,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
+    console.log('peers',peers)
     $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
 
     $('.call').click(function(){
@@ -39,6 +40,12 @@ navigator.mediaDevices.getUserMedia({
     })
     
   })
+
+  socket.on('user-disconnected', userId => {
+    if (peers[userId]) peers[userId].close()
+    console.log('disconnected');
+  })
+
 })
 
 socket.on('user-disconnected', userId => {
