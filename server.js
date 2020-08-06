@@ -13,15 +13,14 @@ app.get('/', (req, res) => {
 
 app.get('/:room', (req, res) => {
   if(req.params.room != 'favicon.ico'){
-    res.render('room', { roomId: req.params.room })
+    if(req.params.room == 'close'){
+        res.render('room-closed')
+        console.log(req.params.room)
+      }else{
+        res.render('room', { roomId: req.params.room })
+      }
   }
 
-  if(req.params.room == 'close'){
-    res.render('room-closed')
-    console.log(req.params.room)
-  }
-
-  console.log(req.params.room)
 })
 
 io.on('connection', socket => {
