@@ -26,16 +26,17 @@ navigator.mediaDevices.getUserMedia({
         $('.call').click(function(){
             addVideoStream(video, userVideoStream)
         })
-      addVideoStream(video, userVideoStream)
-      $('#disconnect').click(function(){
-        call.close();
-        console.log('disconnect');
-    });
+
+      //addVideoStream(video, userVideoStream)
+        $('#disconnect').click(function(){
+            call.close();
+            console.log('disconnect');
+        });
     })
   })
 
   socket.on('user-connected', userId => {
-    $('#contacts').html('<button class="call btn btn-primary text-center">Share Video</button>');
+    $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
     $('.call').click(function(){
         $(this).css({display: 'none'});
         connectToNewUser(userId, stream)//addVideoStream(video, userVideoStream)
@@ -64,15 +65,14 @@ function connectToNewUser(userId, stream) {
   call.on('stream', userVideoStream => {
     $('#disconnect').click(function(){
         call.close();
-        //myPeer.close();
-        //videoGrid.remove();
-        //userVideoStream.close();
+        //socket.disconnect();
         console.log('disconnect');
     });
   })
 
   call.on('close', () => {
     video.remove()
+    socket.disconnect();
     peers[userId].close()
   })
 
