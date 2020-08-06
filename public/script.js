@@ -23,11 +23,7 @@ navigator.mediaDevices.getUserMedia({
     const video = document.createElement('video')
 
     call.on('stream', userVideoStream => {
-        $('.call').click(function(){
-            addVideoStream(video, userVideoStream)
-        })
-
-      //addVideoStream(video, userVideoStream)
+        addVideoStream(video, userVideoStream)
         $('#disconnect').click(function(){
             call.close();
             console.log('disconnect');
