@@ -64,6 +64,7 @@ function connectToNewUser(userId, stream) {
         video.remove()
         call.close();
         socket.disconnect();
+        removeVideoStream(video,userVideoStream)
         $(this).css({display: "none"})
     });
   })
@@ -88,4 +89,13 @@ function addVideoStream(video, stream) {
 
   videoGrid.appendChild(video)
 }
+
+function removeVideoStream(video, stream) {
+    video.srcObject = stream
+    video.addEventListener('loadedmetadata', () => {
+      video.pause()
+    });
+  
+    videoGrid.removeChild(video)
+  }
 
