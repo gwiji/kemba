@@ -85,13 +85,14 @@ function connectToNewUser(userId, stream) {
         call.close();
         socket.disconnect();
         $(this).css({display: "none"});
-        socket.emit('disconnect',roomId, userId);
+        
         userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
                 track.stop();
-                location.reload();
             }
         });
+
+        location.reload();
 
 
     });
@@ -100,7 +101,7 @@ function connectToNewUser(userId, stream) {
 
   call.on('close', () => {
     video.remove()
-    socket.disconnect();
+    socket.emit('disconnect');
     peers[userId].close()
     removeVideoStream(video);
   })
