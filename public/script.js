@@ -91,7 +91,6 @@ function connectToNewUser(userId, stream) {
 
   })
 
-
   call.on('close', () => {
     video.remove()
     socket.disconnect();
