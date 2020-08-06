@@ -38,7 +38,7 @@ navigator.mediaDevices.getUserMedia({
     $('#contacts').html('<button class="call btn btn-primary text-center">Share Video</button>');
     $('.call').click(function(){
         connectToNewUser(userId, stream)//addVideoStream(video, userVideoStream)
-        $(this).html('');
+        $(this).css({display: none});
     })
     
   })
@@ -46,7 +46,6 @@ navigator.mediaDevices.getUserMedia({
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
-  //socket.disconnect();
 })
 
 myPeer.on('open', id => {
@@ -62,11 +61,6 @@ function connectToNewUser(userId, stream) {
   const video = document.createElement('video')
   
   call.on('stream', userVideoStream => {
-    $('.call').click(function(){
-        addVideoStream(video, userVideoStream)
-    })
-    
-
     $('#disconnect').click(function(){
         call.close();
         //myPeer.close();
@@ -78,7 +72,6 @@ function connectToNewUser(userId, stream) {
 
   call.on('close', () => {
     video.remove()
-    //socket.disconnect()
     peers[userId].close()
   })
 
