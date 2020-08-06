@@ -21,12 +21,15 @@ navigator.mediaDevices.getUserMedia({
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
+
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
+
       $('#disconnect').click(function(){
         call.close();
         video.remove()
         console.log('disconnect');
+
     });
     })
   })
@@ -64,13 +67,15 @@ function connectToNewUser(userId, stream) {
         myPeer.close();
         videoGrid.remove();
         userVideoStream.close();
+        socket.disconnect();
         console.log('disconnect');
     });
   })
 
   call.on('close', () => {
     video.remove()
-    peers[userId].close()
+    peers[userId].close();
+    socket.disconnect();
   })
 
   peers[userId] = call
