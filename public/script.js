@@ -41,7 +41,7 @@ navigator.mediaDevices.getUserMedia({
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
-  socket.disconnect();
+  //socket.disconnect();
 })
 
 myPeer.on('open', id => {
@@ -50,10 +50,6 @@ myPeer.on('open', id => {
 
 myPeer.on('close', id => {
     socket.disconnect();
-    navigator.mediaDevices.getUserMedia({
-        video: false,
-        audio: false
-      })
   })
 
 function connectToNewUser(userId, stream) {
@@ -74,7 +70,7 @@ function connectToNewUser(userId, stream) {
 
   call.on('close', () => {
     video.remove()
-    socket.disconnect()
+    //socket.disconnect()
     peers[userId].close()
   })
 
