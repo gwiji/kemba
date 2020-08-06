@@ -92,7 +92,7 @@ function connectToNewUser(userId, stream) {
             }
         });
 
-        location.replace('/close')
+        location.replace('https://kemba.herokuapp.com/close')
 
 
     });
