@@ -15,6 +15,10 @@ app.get('/:room', (req, res) => {
   if(req.params.room != 'favicon.ico'){
     res.render('room', { roomId: req.params.room })
   }
+
+  if(req.params.room == 'close' && req.params.room != 'favicon.ico'){
+    res.render('room-closed')
+  }
 })
 
 io.on('connection', socket => {
