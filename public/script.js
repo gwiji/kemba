@@ -76,6 +76,7 @@ function connectToNewUser(userId, stream) {
         call.close();
         socket.disconnect();
         $(this).css({display: "none"});
+        location.reload();
 
         userVideoStream.getTracks().forEach(function(track) {
             if (track.readyState == 'live') {
