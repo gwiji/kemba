@@ -16,7 +16,10 @@ navigator.mediaDevices.getUserMedia({
   audio: true
 }).then(stream => {
 
-  addVideoStream(myVideo, stream)
+    $('.call').click(function(){
+        addVideoStream(video, userVideoStream)
+    })
+  //addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
     call.answer(stream)
@@ -34,7 +37,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    $('.contacts').html('<button class="call btn btn-primary">Call</button>')
+    $('#contacts').html('<button class="call btn btn-primary">Call on</button>')
     connectToNewUser(userId, stream)
   })
 })
