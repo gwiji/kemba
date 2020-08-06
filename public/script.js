@@ -33,6 +33,7 @@ navigator.mediaDevices.getUserMedia({
     console.log('peers connected',peers)
     $('#contacts').html('<br><button class="call btn btn-primary text-center">Share Video</button>');
     $('.call').click(function(){
+        socket.emit('disconnect')
         $(this).css({display: 'none'});
         connectToNewUser(userId, stream)
         $('#contacts').html('<br><button class="btn btn-danger" id="disconnect">End Call</button>');
@@ -59,11 +60,12 @@ socket.on('user-disconnected', userId => {
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
-  console.log(id,ROOM_ID)
+  console.log("id as "+id,"room as "+ROOM_ID)
 })
 
 myPeer.on('close', id => {
     socket.disconnect();
+    console.log('peer closed')
   })
 
 function connectToNewUser(userId, stream) {
