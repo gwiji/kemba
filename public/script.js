@@ -2,7 +2,7 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
 const myPeer = new Peer({
-  host: 'https://maroon-tyrannosaurus-jk4vo8r5.ws-eu07.gitpod.io',
+  host: 'https://9000-maroon-tyrannosaurus-jk4vo8r5.ws-eu07.gitpod.io',
   secure: true, 
   port: 443
 })
