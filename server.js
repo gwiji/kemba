@@ -1,4 +1,14 @@
 const express = require('express')
+const { ExpressPeerServer } = require('peer');
+const cors = require('cors');
+
+const peerServer = ExpressPeerServer(serve, {
+  debug: true
+});
+
+app.use(cors());
+app.use('/peerjs', peerServer);
+
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -17,7 +27,8 @@ app.get('/:room', (req, res) => {
         res.render('room-closed')
         console.log(req.params.room)
       }else{
-        res.render('room', { roomId: req.params.room })
+        res.render('room', { roomId: req.params.room });
+        console.log(req.params.room);
       }
   }
 
@@ -36,4 +47,4 @@ io.on('connection', socket => {
 
 })
 
-server.listen(process.env.PORT || 3000)
+const serve = server.listen(process.env.PORT || 3000)
