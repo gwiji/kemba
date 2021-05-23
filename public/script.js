@@ -4,8 +4,7 @@ const videoGrid = document.getElementById('video-grid');
 const myPeer = new Peer({
   host: 'kemba.herokuapp.com',
   secure: true, 
-  port: 443,
-  path: '/peerjs'
+  port: 443
 })
 
 const myVideo = document.createElement('video');
